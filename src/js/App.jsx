@@ -5,23 +5,31 @@ import Header from './components/Header';
 import Filter from './components/Filter';
 import Car from './components/Car';
 import Footer from './components/Footer';
-import Fetch from './Fetch'
+
+
 
 function App() {
-  // const [count, setCount] = useState(0)
-// const fetchUrl = 'https://exam.razoyo.com/api/cars'
-
+  const [cars, setCars] = useState([])
+  useEffect(() => {
+    fetch('https://exam.razoyo.com/api/cars')
+    .then((res) => res.json())
+    .then((data) => {
+      setCars(data.cars)
+    })
+  })
   return (
-    <>
+    <div>
       <Header />
-      <Filter />
+      <Filter cars={cars} />
       {/* Map Cars for Each Make and Model Here: */}
       <div className="justify-content-center">
         <p>Hello, World!</p>
-        <Fetch />
+        {cars.map((car) => (
+        <Car key={car.id} year={car.year} make={car.make} model={car.model} />
+      ))}
       </div>
       <Footer />
-    </>
+    </div>
   )
 }
 
