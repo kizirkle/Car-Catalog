@@ -1,9 +1,7 @@
 import { useState } from 'react'
-import Car from './Car'
 
-export default function Filter({ cars }) {
+export default function Filter({ cars, setFilter }) {
   const [input, setInput] = useState('')
-  const [filter, setFilter] = useState('')
 
   const handleKeyPress = (event) => {
     if(event.key === 'Enter'){
@@ -11,10 +9,6 @@ export default function Filter({ cars }) {
     }
   }
 
-  let filteredData = [];
-  if (cars) {
-    filteredData = cars.filter(car => car.make.toLowerCase().includes(filter.toLowerCase()));
-  }
 
   return(
     <div className="m-4 justify-content-end col row">
@@ -27,10 +21,6 @@ export default function Filter({ cars }) {
         onKeyPress={handleKeyPress}
       />
 
-      {/* Display the filtered cars */}
-      {filteredData.map((car) => (
-        <Car key={car.id} year={car.year} make={car.make} model={car.model} />
-      ))}
     </div>
   )
 }

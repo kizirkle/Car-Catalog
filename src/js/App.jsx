@@ -6,25 +6,28 @@ import Filter from './components/Filter';
 import Car from './components/Car';
 import Footer from './components/Footer';
 
-
-
 function App() {
-  const [cars, setCars] = useState([])
+  const [cars, setCars] = useState([]);
+  const [filter, setFilter] = useState('');
+
   useEffect(() => {
     fetch('https://exam.razoyo.com/api/cars')
     .then((res) => res.json())
     .then((data) => {
-      setCars(data.cars)
-    })
-  })
+      setCars(data.cars);
+    });
+  }, []);
+
+  const filteredCars = cars.filter(car =>car.make.toLowerCase().includes(filter.toLowerCase()));
+
   return (
     <div>
       <Header />
-      <Filter cars={cars} />
+      <Filter cars={cars} setFilter={setFilter}/>
       {/* Map Cars for Each Make and Model Here: */}
       <div className="justify-content-center">
         <p>Hello, World!</p>
-        {cars.map((car) => (
+        {filteredCars.map((car) => (
         <Car key={car.id} year={car.year} make={car.make} model={car.model} />
       ))}
       </div>
