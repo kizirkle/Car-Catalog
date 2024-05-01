@@ -1,20 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 //Car Component
-export default function Car({ year, make, model, id }) {
+export default function Car({ year, make, model, id, token }) {
   //State Variables
   const [btn, setBtn] = useState("+");
   const [selectedCar, setSelectedCar] = useState({});
-
+  console.log("Token in Car.jsx:" + token)
   //Changes btn into a - when clicked & fetches the car's data using it's id
   //NOT FUNCTIONAL: Currently not able to get authorization to work. Will likely throw a 403 error.
   const handleBtnPress = () => {
     setBtn(btn === "+" ? "-" : "+");
 
-    fetch(`https://exam.razoyo.com/api/cars/${id}`, {
-      headers: {
+    fetch(`/cars/${id}`, {
+        method: 'GET',
+        headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer SFMyNTY.g2gDbQAAABI6OmZmZmY6MTY5LjI1NC4xLjFuBgDiMsg0jwFiAAFRgA.DvzchygsuclaL6QMHHqPQ7DsE7_078X9W2TlXcUAFcE',
+        'Authorization': `Bearer ${token}`,
       },
     })
       .then((res) => {
@@ -25,7 +26,9 @@ export default function Car({ year, make, model, id }) {
         return res.json();
       })
       .then((data) => {
+        console.log(data)
         setSelectedCar(data);
+
       })
       .catch((error) => {
         console.log(
@@ -33,6 +36,10 @@ export default function Car({ year, make, model, id }) {
         );
       });
   };
+
+  useEffect(() => {
+    console.log(selectedCar);
+  }, [selectedCar]);
 
   return (
     <div className="card m-2" style={{ width: "70vw" }}>
@@ -61,12 +68,16 @@ export default function Car({ year, make, model, id }) {
       >
         {/* This is unlikely to be functional. Again, I was unable to test, as I was repeatedly getting 403 errors. */}
         <div className="accordion-body row">
-          <img className="col-4" src={selectedCar.image} />
-          <div className="col-4">
-            <h5>Price: {selectedCar.price}</h5>
-            <h5>MPG:{selectedCar.mpg}</h5>
-            <h5>Seats: {selectedCar.seats}</h5>
-          </div>
+        {selectedCar && selectedCar.car && (
+    <>
+      <img className="col-4 m-4" src={selectedCar.car.image} />
+      <div className="col-4 m-4">
+        <h5>Price: {selectedCar.car.price}</h5>
+        <h5>MPG: {selectedCar.car.mpg}</h5>
+        <h5>Seats: {selectedCar.car.seats}</h5>
+      </div>
+    </>
+  )}
         </div>
       </div>
     </div>

@@ -8,11 +8,26 @@ import Footer from "./components/Footer";
 function App() {
   const [cars, setCars] = useState([]);
   const [filter, setFilter] = useState("");
+  const [token, setToken] = useState("")
 
-  //Fetches raw data from Cars API
-  useEffect(() => {
-    fetch("https://exam.razoyo.com/api/cars")
-      .then((res) => res.json())
+    //Fetches raw data from Cars API
+    useEffect(() => {
+      fetch("/cars")
+        .then((res) => {
+          // Save the token
+            const token = res.headers.get('your-token');
+            setToken(token); // Add this line
+            
+            // Log the token to the console
+            console.log('Token:', token);
+
+            // Log all the headers to the console
+            for (let [key, value] of res.headers.entries()) {
+              console.log(`${key}: ${value}`);
+            }
+
+          return res.json();
+      })
       .then((data) => {
         setCars(data.cars);
       });
@@ -22,7 +37,7 @@ function App() {
   const filteredCars = cars.filter((car) =>
     car.make.toLowerCase().includes(filter.toLowerCase())
   );
-  
+
   return (
     <div>
       <Header />
@@ -32,6 +47,7 @@ function App() {
         {filteredCars.map((car) => (
           <Car
             key={car.id}
+            token={token}
             id={car.id}
             year={car.year}
             make={car.make}
