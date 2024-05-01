@@ -11,30 +11,46 @@ export default function Car({ year, make, model, id, token }) {
   const handleBtnPress = () => {
     setBtn(btn === "+" ? "-" : "+");
 
-    fetch(`/cars/${id}`, {
+    // Check if the response is in the cache
+  caches.match(`/cars/${id}`).then((response) => {
+    if (response) {
+      // If it's in the cache, use the cached response
+      response.json().then((data) => {
+        console.log(data);
+        setSelectedCar(data);
+      });
+    } else {
+      // If it's not in the cache, make a fetch request
+      fetch(`/cars/${id}`, {
         method: 'GET',
         headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-    })
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      })
       .then((res) => {
-        console.log(res)
+        // Only cache successful responses
+        if (res.ok) {
+          // Clone the response before reading the body
+          const clone = res.clone();
+      
+          // Add the cloned response to the cache
+          caches.open('car-cache').then((cache) => {
+            cache.put(`/cars/${id}`, clone);
+          });
+        }
+      
+        // Now you can read the body
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
         return res.json();
       })
       .then((data) => {
-        console.log(data)
         setSelectedCar(data);
-
-      })
-      .catch((error) => {
-        console.log(
-          "There was a problem with the fetch operation: " + error.message
-        );
       });
+    }
+  });
   };
 
   useEffect(() => {
