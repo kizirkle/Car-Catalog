@@ -9,6 +9,7 @@ function App() {
   const [cars, setCars] = useState([]);
   const [filter, setFilter] = useState("");
 
+  //Fetches raw data from Cars API
   useEffect(() => {
     fetch("https://exam.razoyo.com/api/cars")
       .then((res) => res.json())
@@ -17,10 +18,11 @@ function App() {
       });
   }, []);
 
+  //Filters cars based on search criteria in the Filter.jsx file.
   const filteredCars = cars.filter((car) =>
     car.make.toLowerCase().includes(filter.toLowerCase())
   );
-  console.log(filteredCars);
+  
   return (
     <div>
       <Header />

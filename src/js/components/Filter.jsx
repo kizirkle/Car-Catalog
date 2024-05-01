@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function Filter({ cars, setFilter }) {
   const [input, setInput] = useState("");
 
+  //When you press enter, a search will be initiated.
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       setFilter(input);
