@@ -32,7 +32,7 @@ export default function Car({ year, make, model, id, token }) {
         if (res.ok) {
           // Clone the response before reading the body
           const clone = res.clone();
-      
+            console.log(res)
           // Add the cloned response to the cache
           caches.open('car-cache').then((cache) => {
             cache.put(`/cars/${id}`, clone);
@@ -52,9 +52,9 @@ export default function Car({ year, make, model, id, token }) {
   });
   };
 
-  //useEffect(() => {
-    //console.log(selectedCar);
-  //}, [selectedCar]);
+  useEffect(() => {
+    console.log(selectedCar);
+  }, [selectedCar]);
 
   return (
     <div className="card m-2" style={{ width: "70vw" }}>
