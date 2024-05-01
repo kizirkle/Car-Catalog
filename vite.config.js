@@ -5,10 +5,10 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   server: {
     proxy: {
-      '/cars': {
-        target: 'https://exam.razoyo.com/api',
+      '/api': {
+        target: 'https://exam.razoyo.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        
       },
     },
   },
