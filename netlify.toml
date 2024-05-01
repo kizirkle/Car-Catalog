@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/api/*"
-  to = "https://exam.razoyo.com/api"
+  to = "https://exam.razoyo.com"
   status = 200
 [[redirects]]
   from = "/*"
