@@ -15,16 +15,8 @@ function App() {
       fetch("/cars")
         .then((res) => {
           // Save the token
-            const token = res.headers.get('your-token');
-            setToken(token); // Add this line
-            
-            // Log the token to the console
-            console.log('Token:', token);
-
-            // Log all the headers to the console
-            for (let [key, value] of res.headers.entries()) {
-              console.log(`${key}: ${value}`);
-            }
+          const token = res.headers.get('your-token');
+          setToken(token); 
 
           return res.json();
       })

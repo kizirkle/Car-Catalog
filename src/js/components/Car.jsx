@@ -5,20 +5,19 @@ export default function Car({ year, make, model, id, token }) {
   //State Variables
   const [btn, setBtn] = useState("+");
   const [selectedCar, setSelectedCar] = useState({});
-  console.log("Token in Car.jsx:" + token)
-  //Changes btn into a - when clicked & fetches the car's data using it's id
-  //NOT FUNCTIONAL: Currently not able to get authorization to work. Will likely throw a 403 error.
+
+
+  
+
   const handleBtnPress = () => {
+    //Changes btn into a - when clicked & fetches the car's data using it's id
     setBtn(btn === "+" ? "-" : "+");
 
     // Check if the response is in the cache
-  caches.match(`/cars/${id}`).then((response) => {
+    caches.match(`/cars/${id}`).then((response) => {
     if (response) {
       // If it's in the cache, use the cached response
-      response.json().then((data) => {
-        console.log(data);
-        setSelectedCar(data);
-      });
+      response.json().then((data) => setSelectedCar(data));
     } else {
       // If it's not in the cache, make a fetch request
       fetch(`/cars/${id}`, {
@@ -53,9 +52,9 @@ export default function Car({ year, make, model, id, token }) {
   });
   };
 
-  useEffect(() => {
-    console.log(selectedCar);
-  }, [selectedCar]);
+  //useEffect(() => {
+    //console.log(selectedCar);
+  //}, [selectedCar]);
 
   return (
     <div className="card m-2" style={{ width: "70vw" }}>
