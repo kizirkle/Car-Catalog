@@ -4,7 +4,7 @@
 
 ## Description
 
-A small code made to display cars using a Cars API. I created this to show my knowledge on fetch requests and front end code. Unfortunately, I had significant troubles with getting authorized in this api, so some functionality is missing. If I am able to get the API to accept my login, then I will update with full functionality.
+A small code made to display cars using a Cars API. I created this to show my knowledge on fetch requests and front end code. When building this site, I dusted off my knowledge of authorization, creating proxy servers, and caching data.
     
 ## Table of Contents
 
@@ -21,7 +21,7 @@ There is no need to install, however, if you'd like to view the code, simply cre
 
 ## Usage
     
-To use this application, follow the link below. You'll be taken to a site filled with cars. To filter through these cars and find one you like, search for the make in the filter bar. To view more about a car, click the plus button beside the car's name (pending functionality).
+To use this application, follow the link below. You'll be taken to a site filled with cars. To filter through these cars and find one you like, search for the make in the filter bar. To view more about a car, click the plus button beside the car's name.
 
 ## License
 
@@ -29,10 +29,6 @@ This project is covered under the MIT license. For more information, visit the l
 
 [License Link](./LICENSE)
 
-## Contributing
-
-To contribute to this application, feel free to create an Issue in our issues tab for me to look through.
-    
 ## Tests
 
 There is no way to test this application at this time. Thank you!
@@ -42,7 +38,7 @@ There is no way to test this application at this time. Thank you!
 Here is the link to the deployed version of this app:
 
 https://kurtis-car-catalog.netlify.app
-    
+
 ## Questions
 
 Have any questions? This is how to contact me:
