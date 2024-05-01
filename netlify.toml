@@ -1,9 +1,9 @@
 [[redirects]]
-  from = "/api/*"
+  from = "/api/cars"
   to = "https://exam.razoyo.com/api/cars"
   status = 200
 [[redirects]]
-  from = "/api/*"
+  from = "/api/cars/*"
   to = "https://exam.razoyo.com/api/cars/:id"
   status = 200
 [[redirects]]
