@@ -12,7 +12,7 @@ function App() {
 
     //Fetches raw data from Cars API
     useEffect(() => {
-      fetch("https://exam.razoyo.com/api/cars")
+      fetch("/api/cars")
         .then((res) => {
           // Save the token
           const token = res.headers.get('your-token');
