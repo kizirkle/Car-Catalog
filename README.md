@@ -41,7 +41,7 @@ There is no way to test this application at this time. Thank you!
 
 Here is the link to the deployed version of this app:
 
-https://kizirkle.github.io/Car-Catalog/
+https://kurtis-car-catalog.netlify.app
     
 ## Questions
 
