@@ -20,7 +20,7 @@ export default function Car({ year, make, model, id, token }) {
       response.json().then((data) => setSelectedCar(data));
     } else {
       // If it's not in the cache, make a fetch request
-      fetch(`/cars/${id}`, {
+      fetch(`https://exam.razoyo.com/api/cars/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
