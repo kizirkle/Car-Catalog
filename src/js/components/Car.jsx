@@ -13,10 +13,12 @@ export default function Car({ year, make, model, id }) {
 
     fetch(`https://exam.razoyo.com/api/cars/${id}`, {
       headers: {
-        Authorization: `Bearer kizirkle`,
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer SFMyNTY.g2gDbQAAABI6OmZmZmY6MTY5LjI1NC4xLjFuBgDiMsg0jwFiAAFRgA.DvzchygsuclaL6QMHHqPQ7DsE7_078X9W2TlXcUAFcE',
       },
     })
       .then((res) => {
+        console.log(res)
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
