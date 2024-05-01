@@ -4,7 +4,7 @@
   status = 200
 [[redirects]]
   from = "/api/cars/*"
-  to = "https://exam.razoyo.com/api/cars/:id"
+  to = "https://exam.razoyo.com/api/cars/:splat"
   status = 200
 [[redirects]]
   from = "/*"
